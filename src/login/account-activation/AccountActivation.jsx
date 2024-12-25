@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
+
+import "./accountactivation.css";
 import Hero from "../../components/hero/Hero";
 import Button from "../../components/button/Button";
 import InputField from "../../components/input-field/InputField";
 import useEmailValidation from "../../hooks/useEmailValidation";
-import "./forgotpassword.css";
 
-function ForgotPassword() {
+function AccountActivation() {
   const navigate = useNavigate();
   const { email, emailIsValid, emailError, handleEmailChange } =
     useEmailValidation();
@@ -13,20 +14,18 @@ function ForgotPassword() {
   function handleReset(e) {
     e.preventDefault();
     if (emailIsValid) {
-      navigate("/new-password", { state: { email } });
-    } else {
-      console.log("Email is invalid:", emailError);
+      navigate("/activation-form", { state: { email } });
     }
   }
 
   return (
-    <div className="forgot-password-container">
+    <div className="account-activation-container">
       <Hero />
       <div className="form-container">
-        <form className="forgot-password-form" onSubmit={handleReset}>
-          <label>Forgot Password?</label>
-          <p className="forgot-message">
-            Please enter your email to get a password reset code.
+        <form className="account-activation-form" onSubmit={handleReset}>
+          <label>Account Activation?</label>
+          <p className="activation-message">
+            Please enter your email to get account activation code.
           </p>
           <InputField
             type="email"
@@ -42,7 +41,7 @@ function ForgotPassword() {
               className={`button ${emailIsValid ? "valid" : ""}`}
               disabled={!emailIsValid}
             >
-              Reset
+              Activate
             </Button>
           </div>
         </form>
@@ -51,4 +50,4 @@ function ForgotPassword() {
   );
 }
 
-export default ForgotPassword;
+export default AccountActivation;

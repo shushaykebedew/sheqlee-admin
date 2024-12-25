@@ -1,0 +1,53 @@
+:root {
+  --primary-color: #8967b3;
+  --secondary-color: #0c47ec;
+  --font-color: #000000;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.account-activation-container {
+  width: 50rem;
+  padding-top: 5rem;
+  margin: 5rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  font-family: "Kantumruy Pro";
+}
+.account-activation-form label {
+  display: block;
+  margin-bottom: 0.6rem;
+  text-align: left;
+  font: normal normal bold 2rem/2.5rem "Kantumruy Pro";
+  color: var(--font-color);
+  letter-spacing: 0;
+}
+
+.form-container {
+  width: 32rem !important;
+}
+.activation-message {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+.error-message {
+  color: red;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}

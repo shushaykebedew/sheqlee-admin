@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-
-import "./newpassword.css";
+import "./activationform.css";
 import Hero from "../../components/hero/Hero";
 import Button from "../../components/button/Button";
 import InputField from "../../components/input-field/InputField";
 import PasswordField from "../../components/password-field/PasswordField";
 import useResetCodeValidation from "../../hooks/useResetCodeValidation";
-import usePasswordValidation from "../../hooks/usePasswordValidation";
+import usePasswordValidation from "../../hooks/usePasswordValidation"; // Import the custom password validation hook
 
-function NewPassword() {
+function ActivationForm() {
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +15,7 @@ function NewPassword() {
   const { resetCode, setResetCode, resetCodeError, validateResetCode } =
     useResetCodeValidation();
 
-  const { passwordError } = usePasswordValidation(passwordOne, passwordTwo);
+  const { passwordError } = usePasswordValidation(passwordOne, passwordTwo); // Use the custom hook for validation
 
   useEffect(() => {
     if (resetCode) {
@@ -26,7 +25,7 @@ function NewPassword() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (resetCodeError) {
+    if (!passwordError && !resetCodeError) {
       console.log("Password successfully reset!");
     }
   }
@@ -37,21 +36,21 @@ function NewPassword() {
 
   const isFormValid =
     passwordOne &&
-    passwordTwo &&
+    (passwordTwo ? passwordTwo : true) &&
     resetCode &&
     !passwordError &&
     !resetCodeError;
 
   return (
-    <div className="new-password-container">
+    <div className="activation-container">
       <Hero />
-      <div className="new-password-form-container">
-        <form className="new-password-form" onSubmit={handleSubmit}>
+      <div className="activation-form-container">
+        <form className="activation-form" onSubmit={handleSubmit}>
           <div className="left">
             <label>Enter Code</label>
             <p className="forgot-message">
-              We have sent a reset code to your email, Please enter the code
-              below.
+              Please enter the one-time code sent to your email and set a new
+              password.
             </p>
 
             <InputField
@@ -72,8 +71,9 @@ function NewPassword() {
               showPassword={showPassword}
               togglePasswordVisibility={togglePasswordVisibility}
             />
+
             <PasswordField
-              placeholder="Password..."
+              placeholder="Confirm Password..."
               value={passwordTwo}
               error={passwordError}
               onChange={(e) => setPasswordTwo(e.target.value)}
@@ -81,6 +81,7 @@ function NewPassword() {
               showPassword={showPassword}
               togglePasswordVisibility={togglePasswordVisibility}
             />
+
             <div className="action-buttons">
               <Button
                 type="submit"
@@ -97,4 +98,4 @@ function NewPassword() {
   );
 }
 
-export default NewPassword;
+export default ActivationForm;
