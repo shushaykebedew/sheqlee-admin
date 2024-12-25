@@ -3,15 +3,18 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 
 import "./newpassword.css";
-import Hero from "../components/hero/Hero";
+import Hero from "../../components/hero/Hero";
+import Button from "../../components/button/Button";
+import InputField from "../../components/input-field/InputField";
+import PasswordField from "../../components/password-field/PasswordField";
 
 function NewPassword() {
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
-  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
   const [passwordError, setPasswordError] = useState("");
   const [resetCode, setResetCode] = useState("");
   const [resetCodeError, setResetCodeError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   // Password validation function
   function validatePasswords() {
@@ -77,6 +80,10 @@ function NewPassword() {
     }
   }
 
+  function togglePasswordVisibility() {
+    setShowPassword((prevState) => !prevState);
+  }
+
   const isFormValid =
     passwordOne &&
     passwordTwo &&
@@ -93,55 +100,44 @@ function NewPassword() {
             <label>Enter Code</label>
             <p className="forgot-message">
               We have sent a reset code to your email, Please enter the code
-              below
+              below.
             </p>
-            <input
+
+            <InputField
               type="text"
-              placeholder="Enter Code..."
+              placeholder="Enter Code"
               value={resetCode}
               onChange={(e) => setResetCode(e.target.value)}
+              error={resetCodeError}
             />
-            {resetCodeError && (
-              <p className="error-message">{resetCodeError}</p>
-            )}
           </div>
           <div className="right">
-            <label>New Password?</label>
-
-            <div className="password-container">
-              <input
-                type={passwordIsVisible ? "text" : "password"}
-                placeholder="Password..."
-                value={passwordOne}
-                onChange={(e) => setPasswordOne(e.target.value)}
-              />
-              <span
-                className="show-password-icon"
-                onClick={() => setPasswordIsVisible(!passwordIsVisible)}
-              >
-                <FontAwesomeIcon
-                  icon={passwordIsVisible ? faEyeSlash : faEye}
-                  className="eye-icon"
-                />
-              </span>
-              <input
-                type={passwordIsVisible ? "text" : "password"}
-                placeholder="Confirm Password..."
-                value={passwordTwo}
-                onChange={(e) => setPasswordTwo(e.target.value)}
-              />
-            </div>
-
-            {passwordError && <p className="error-message">{passwordError}</p>}
-
+            <label>New Password</label>
+            <PasswordField
+              placeholder="New Password..."
+              value={passwordOne}
+              onChange={(e) => setPasswordOne(e.target.value)}
+              showEyeIcon={true}
+              showPassword={showPassword}
+              togglePasswordVisibility={togglePasswordVisibility}
+            />
+            <PasswordField
+              placeholder="Password..."
+              value={passwordTwo}
+              error={passwordError}
+              onChange={(e) => setPasswordTwo(e.target.value)}
+              showEyeIcon={false}
+              showPassword={showPassword}
+              togglePasswordVisibility={togglePasswordVisibility}
+            />
             <div className="action-buttons">
-              <button
+              <Button
                 type="submit"
-                className={`save-button ${isFormValid ? "valid" : ""}`}
+                className={`button ${isFormValid ? "valid" : ""}`}
                 disabled={!isFormValid}
               >
                 Save
-              </button>
+              </Button>
             </div>
           </div>
         </form>

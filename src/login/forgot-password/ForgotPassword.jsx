@@ -1,7 +1,10 @@
-import "./forgotpassword.css";
-import Hero from "../components/hero/Hero";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import "./forgotpassword.css";
+import Hero from "../../components/hero/Hero";
+import Button from "../../components/button/Button";
+import InputField from "../../components/input-field/InputField";
 
 function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -45,21 +48,22 @@ function ForgotPassword() {
           <p className="forgot-message">
             Please enter your email to get a password reset code.
           </p>
-          <input
+          <InputField
             type="email"
             placeholder="Your email..."
             value={email}
             onChange={handleEmailChange}
+            error={emailError}
           />
-          {emailError && <p className="error-message">{emailError}</p>}
+
           <div className="action-buttons">
-            <button
+            <Button
               type="submit"
-              className={`reset-button ${emailIsValid ? "valid" : ""}`}
+              className={`button ${emailIsValid ? "valid" : ""}`}
               disabled={!emailIsValid}
             >
               Reset
-            </button>
+            </Button>
           </div>
         </form>
       </div>

@@ -1,21 +1,20 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 import "./login.css";
 import Hero from "../components/hero/Hero";
 import { Link } from "react-router-dom";
+import InputField from "../components/input-field/InputField";
+import PasswordField from "../components/password-field/PasswordField";
+import Button from "../components/button/Button";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordIsVisible, setPasswordIsVisible] = useState(false);
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-  const togglePasswordVisibility = () => setPasswordIsVisible((prev) => !prev);
 
   function validateEmail(email) {
     if (!email) {
@@ -46,6 +45,10 @@ function Login() {
     setPasswordError(validatePassword(newPassword));
   }
 
+  function togglePasswordVisibility() {
+    setShowPassword((prevState) => !prevState);
+  }
+
   const isFormValid = email && password && !emailError && !passwordError;
 
   return (
@@ -53,40 +56,33 @@ function Login() {
       <Hero />
       <div className="form-container">
         <form className="login-form">
-          <label>Log in</label>
-          <input
+          <InputField
+            label="Login"
             type="email"
             placeholder="Email..."
             value={email}
             onChange={handleEmailChange}
+            error={emailError}
           />
-          {emailError && <p className="error-message">{emailError}</p>}
-          <div className="password-container">
-            <input
-              type={passwordIsVisible ? "text" : "password"}
-              placeholder="Password..."
-              value={password}
-              onChange={handlePasswordChange}
-            />
-            <span
-              className="show-password-icon"
-              onClick={togglePasswordVisibility}
-            >
-              <FontAwesomeIcon
-                icon={passwordIsVisible ? faEyeSlash : faEye}
-                className="eye-icon"
-              />
-            </span>
-          </div>
-          {passwordError && <p className="error-message">{passwordError}</p>}
+
+          <PasswordField
+            placeholder="Password..."
+            value={password}
+            onChange={handlePasswordChange}
+            error={passwordError}
+            showEyeIcon
+            showPassword={showPassword}
+            togglePasswordVisibility={togglePasswordVisibility}
+          />
+
           <div className="action-buttons">
-            <button
+            <Button
               type="submit"
-              className={`reset-button ${isFormValid ? "valid" : ""}`}
+              className={`button ${isFormValid ? "valid" : ""}`}
               disabled={!isFormValid}
             >
               Log in
-            </button>
+            </Button>
             <span className="reset-link">
               Forgot password? <Link to="/forgot-password">Reset</Link>
             </span>

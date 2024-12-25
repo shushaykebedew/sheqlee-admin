@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./login/Login";
-import ForgotPassword from "./login/ForgotPassword";
-import NewPassword from "./login/NewPassword";
+import ForgotPassword from "./login/forgot-password/ForgotPassword";
+import NewPassword from "./login/new-password/NewPassword";
 
 function App() {
   return (
