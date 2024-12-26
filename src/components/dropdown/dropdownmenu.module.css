@@ -1,0 +1,41 @@
+/* Dropdown.module.css */
+
+.dropdownContainer {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown {
+  position: relative;
+  margin-right: 10px; /* Space between month and year dropdown */
+}
+
+.select {
+  appearance: none; /* Remove default styling */
+  background-color: #4caf50; /* Button background color */
+  color: white; /* Text color */
+  padding: 10px 20px; /* Padding around text */
+  font-size: 16px; /* Font size */
+  border: none; /* No border */
+  border-radius: 5px; /* Rounded corners */
+  cursor: pointer; /* Pointer cursor */
+  outline: none; /* Remove focus outline */
+}
+
+.select:focus {
+  outline: none; /* Remove outline on focus */
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px; /* Space from the right */
+  transform: translateY(-50%); /* Center the arrow vertically */
+  font-size: 16px; /* Adjust as needed for size */
+  color: white; /* Color of the arrow */
+}
+
+.dropdown select {
+  /* Keep appearance similar to button */
+  background: transparent; /* Make select background transparent */
+}

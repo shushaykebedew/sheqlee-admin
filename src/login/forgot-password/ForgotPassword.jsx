@@ -3,7 +3,7 @@ import Hero from "../../components/hero/Hero";
 import Button from "../../components/button/Button";
 import InputField from "../../components/input-field/InputField";
 import useEmailValidation from "../../hooks/useEmailValidation";
-import "./forgotpassword.css";
+import classes from "./forgotpassword.module.css";
 
 function ForgotPassword() {
   const navigate = useNavigate();
@@ -20,12 +20,15 @@ function ForgotPassword() {
   }
 
   return (
-    <div className="forgot-password-container">
+    <div className={classes["forgot-password-container"]}>
       <Hero />
-      <div className="form-container">
-        <form className="forgot-password-form" onSubmit={handleReset}>
+      <div className={classes["form-container"]}>
+        <form
+          className={classes["forgot-password-form"]}
+          onSubmit={handleReset}
+        >
           <label>Forgot Password?</label>
-          <p className="forgot-message">
+          <p className={classes["forgot-message"]}>
             Please enter your email to get a password reset code.
           </p>
           <InputField
@@ -36,10 +39,12 @@ function ForgotPassword() {
             error={emailError}
           />
 
-          <div className="action-buttons">
+          <div className={classes["action-buttons"]}>
             <Button
               type="submit"
-              className={`button ${emailIsValid ? "valid" : ""}`}
+              className={`${classes.button} ${
+                emailIsValid ? classes.valid : ""
+              }`}
               disabled={!emailIsValid}
             >
               Reset

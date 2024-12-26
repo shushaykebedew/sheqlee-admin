@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./button.css";
+import classes from "./button.module.css";
 
 function Button({
   children,
@@ -12,7 +12,9 @@ function Button({
   return (
     <button
       type={type}
-      className={`custom-button ${className} ${disabled ? "disabled" : ""}`}
+      className={`${classes.button} ${className} ${
+        disabled ? classes.disabled : ""
+      } ${disabled ? "" : children ? classes.valid : ""}`}
       onClick={onClick}
       disabled={disabled}
     >

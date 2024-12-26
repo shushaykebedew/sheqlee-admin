@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import "./activationform.css";
+import classes from "./activationform.module.css";
 import Hero from "../../components/hero/Hero";
 import Button from "../../components/button/Button";
 import InputField from "../../components/input-field/InputField";
 import PasswordField from "../../components/password-field/PasswordField";
 import useResetCodeValidation from "../../hooks/useResetCodeValidation";
-import usePasswordValidation from "../../hooks/usePasswordValidation"; // Import the custom password validation hook
+import usePasswordValidation from "../../hooks/usePasswordValidation";
 
 function ActivationForm() {
   const [passwordOne, setPasswordOne] = useState("");
@@ -15,7 +15,7 @@ function ActivationForm() {
   const { resetCode, setResetCode, resetCodeError, validateResetCode } =
     useResetCodeValidation();
 
-  const { passwordError } = usePasswordValidation(passwordOne, passwordTwo); // Use the custom hook for validation
+  const { passwordError } = usePasswordValidation(passwordOne, passwordTwo);
 
   useEffect(() => {
     if (resetCode) {
@@ -42,13 +42,13 @@ function ActivationForm() {
     !resetCodeError;
 
   return (
-    <div className="activation-container">
+    <div className={classes["activation-container"]}>
       <Hero />
-      <div className="activation-form-container">
-        <form className="activation-form" onSubmit={handleSubmit}>
-          <div className="left">
+      <div className={classes["activation-form-container"]}>
+        <form className={classes["activation-form"]} onSubmit={handleSubmit}>
+          <div className={classes["left"]}>
             <label>Enter Code</label>
-            <p className="forgot-message">
+            <p className={classes["activation-message"]}>
               Please enter the one-time code sent to your email and set a new
               password.
             </p>
@@ -61,7 +61,7 @@ function ActivationForm() {
               error={resetCodeError}
             />
           </div>
-          <div className="right">
+          <div className={classes["right"]}>
             <label>New Password</label>
             <PasswordField
               placeholder="New Password..."
@@ -82,10 +82,12 @@ function ActivationForm() {
               togglePasswordVisibility={togglePasswordVisibility}
             />
 
-            <div className="action-buttons">
+            <div className={classes["action-buttons"]}>
               <Button
                 type="submit"
-                className={`button ${isFormValid ? "valid" : ""}`}
+                className={`${classes.button}${
+                  isFormValid ? classes.valid : ""
+                }`}
                 disabled={!isFormValid}
               >
                 Save

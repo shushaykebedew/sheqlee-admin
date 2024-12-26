@@ -1,23 +1,30 @@
 import { useState } from "react";
-import "./login.css";
+import classes from "./login.module.css";
 import Hero from "../components/hero/Hero";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import InputField from "../components/input-field/InputField";
 import PasswordField from "../components/password-field/PasswordField";
 import Button from "../components/button/Button";
 import useEmailValidation from "../hooks/useEmailValidation";
-import usePasswordValidation from "../hooks/usePasswordValidation"; // Import the custom hook for password validation
+import usePasswordValidation from "../hooks/usePasswordValidation";
+
+const userData = {
+  storedEmail: "sh@gm.co",
+  storedPassword: "Abc123",
+};
 
 function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
   const { email, emailError, handleEmailChange } = useEmailValidation();
-  const { passwordError } = usePasswordValidation(password); // Use the custom hook for password validation
+  const { passwordError } = usePasswordValidation(password);
+  const [loginError, setLoginError] = useState("");
 
   function handlePasswordChange(e) {
     const newPassword = e.target.value;
     setPassword(newPassword);
+    setLoginError("");
   }
 
   function togglePasswordVisibility() {
@@ -26,13 +33,27 @@ function Login() {
 
   const isFormValid = email && password && !emailError && !passwordError;
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (isFormValid) {
+      if (
+        password === userData.storedPassword &&
+        email === userData.storedEmail
+      ) {
+        navigate("/homepage");
+      } else {
+        setLoginError("User not found!");
+      }
+    }
+  }
+
   return (
-    <div className="login-container">
+    <div className={classes["login-container"]}>
       <Hero />
-      <div className="form-container">
-        <form className="login-form">
+      <div className={classes["form-container"]}>
+        <form className={classes["login-form"]} onSubmit={handleSubmit}>
           <InputField
-            label="Login"
+            label="Log in"
             type="email"
             placeholder="Email..."
             value={email}
@@ -49,21 +70,25 @@ function Login() {
             showPassword={showPassword}
             togglePasswordVisibility={togglePasswordVisibility}
           />
-
-          <div className="action-buttons">
+          {loginError && (
+            <p className={classes["error-message"]}>{loginError}</p>
+          )}
+          <div className={classes["action-buttons"]}>
             <Button
               type="submit"
-              className={`button ${isFormValid ? "valid" : ""}`}
+              className={`${classes.button} ${
+                isFormValid ? classes.valid : ""
+              }`}
               disabled={!isFormValid}
             >
               Log in
             </Button>
-            <span className="reset-link">
+            <span className={classes["reset-link"]}>
               Forgot password? <Link to="/forgot-password">Reset</Link>
             </span>
           </div>
         </form>
-        <p className="first-time-text">
+        <p className={classes["first-time-text"]}>
           First time logging in? Click{" "}
           <Link to="/account-activation">here</Link> to activate your account.
         </p>

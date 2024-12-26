@@ -1,0 +1,10 @@
+.main-container {
+  display: grid;
+  grid-template-columns: 28rem 1fr;
+  column-gap: 3rem;
+  background-color: #fcfcfc;
+}
+
+.right {
+  background-color: #f7f7f7;
+}

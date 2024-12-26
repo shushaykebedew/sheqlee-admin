@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
-import "./passwordfield.css";
+import classes from "./passwordfield.module.css";
 
 function PasswordField({
   value,
@@ -13,8 +13,8 @@ function PasswordField({
   togglePasswordVisibility,
 }) {
   return (
-    <div className="password-field">
-      <div className="password-field-form">
+    <div className={classes["password-field"]}>
+      <div className={classes["password-field-form"]}>
         <input
           type={showPassword ? "text" : "password"}
           placeholder={placeholder}
@@ -22,15 +22,18 @@ function PasswordField({
           onChange={onChange}
         />
         {showEyeIcon && (
-          <span className="show-eye-icon" onClick={togglePasswordVisibility}>
+          <span
+            className={classes["show-eye-icon"]}
+            onClick={togglePasswordVisibility}
+          >
             <FontAwesomeIcon
               icon={showPassword ? faEyeSlash : faEye}
-              className="eye-icon"
+              className={classes["eye-icon"]}
             />
           </span>
         )}
       </div>
-      {error && <p className="error-message">{error}</p>}
+      {error && <p className={classes["error-message"]}>{error}</p>}
     </div>
   );
 }

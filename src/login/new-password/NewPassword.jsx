@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import "./newpassword.css";
+import classes from "./newpassword.module.css";
 import Hero from "../../components/hero/Hero";
 import Button from "../../components/button/Button";
 import InputField from "../../components/input-field/InputField";
@@ -43,13 +43,13 @@ function NewPassword() {
     !resetCodeError;
 
   return (
-    <div className="new-password-container">
+    <div className={classes["new-password-container"]}>
       <Hero />
-      <div className="new-password-form-container">
-        <form className="new-password-form" onSubmit={handleSubmit}>
-          <div className="left">
+      <div className={classes["new-password-form-container"]}>
+        <form className={classes["new-password-form"]} onSubmit={handleSubmit}>
+          <div className={classes.left}>
             <label>Enter Code</label>
-            <p className="forgot-message">
+            <p className={classes["forgot-message"]}>
               We have sent a reset code to your email, Please enter the code
               below.
             </p>
@@ -62,7 +62,7 @@ function NewPassword() {
               error={resetCodeError}
             />
           </div>
-          <div className="right">
+          <div className={classes.right}>
             <label>New Password</label>
             <PasswordField
               placeholder="New Password..."
@@ -81,10 +81,12 @@ function NewPassword() {
               showPassword={showPassword}
               togglePasswordVisibility={togglePasswordVisibility}
             />
-            <div className="action-buttons">
+            <div className={classes["action-buttons"]}>
               <Button
                 type="submit"
-                className={`button ${isFormValid ? "valid" : ""}`}
+                className={`${classes.button} ${
+                  isFormValid ? classes.valid : ""
+                }`}
                 disabled={!isFormValid}
               >
                 Save

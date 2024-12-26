@@ -1,8 +1,8 @@
-import "./inputfield.css";
+import classes from "./inputfield.module.css";
 
 function InputField({ label, type, value, onChange, error, placeholder }) {
   return (
-    <div className="input-field">
+    <div className={classes["input-field"]}>
       {label && <label>{label}</label>}
       <input
         type={type}
@@ -10,7 +10,7 @@ function InputField({ label, type, value, onChange, error, placeholder }) {
         value={value}
         onChange={onChange}
       />
-      {error && <p className="error-message">{error}</p>}
+      {error && <p className={classes["error-message"]}>{error}</p>}
     </div>
   );
 }

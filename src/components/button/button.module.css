@@ -1,6 +1,6 @@
 .button {
   display: inline-block;
-  padding: 1.3rem 2rem;
+  padding: 1.1rem 2rem;
   background-color: var(--font-color);
   color: #fff;
   border: none;
@@ -12,7 +12,7 @@
   font-family: "Kantumruy Pro";
 }
 
-.button.valid {
+.valid {
   background-color: var(--primary-color);
 }
 

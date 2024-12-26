@@ -1,8 +1,9 @@
-import classes from "./hero.module.css";
-
-function Hero() {
+import classes from "./accountinfo.module.css";
+import profile from "../../images/profile-lg.png";
+import { Link } from "react-router-dom";
+function AccountInfo() {
   return (
-    <div className={classes.hero}>
+    <div className={classes["account-info"]}>
       <div className={classes.logo}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -38,12 +39,36 @@ function Hero() {
           </g>
         </svg>
       </div>
-      <h2 className={classes.title}>
-        CONTROL BOARD
-        <div className={classes.underline}></div>
-      </h2>
+      <div className={classes["account-details"]}>
+        <div className={classes["acount-detail"]}>
+          <img src={profile} alt="profile" className={classes["profile-img"]} />
+          <p className={classes.username}>Muruts Yifter</p>
+        </div>
+        <div className={classes.action}>
+          <Link className={classes["logout-button"]} to="/">
+            Logout
+          </Link>
+          <span className={classes["forward-arrow"]}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="5.755"
+              height="9.279"
+              viewBox="0 0 5.755 9.279"
+            >
+              <path
+                id="Icon_ionic-ios-arrow-forward"
+                data-name="Icon ionic-ios-arrow-forward"
+                d="M14.527,10.3,11.419,7.2a.585.585,0,0,1,0-.829.592.592,0,0,1,.832,0l3.522,3.519a.586.586,0,0,1,.017.81L12.253,14.24a.587.587,0,1,1-.832-.829Z"
+                transform="translate(-10.746 -5.632)"
+                stroke="#000"
+                stroke-width="1"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
     </div>
   );
 }
 
-export default Hero;
+export default AccountInfo;

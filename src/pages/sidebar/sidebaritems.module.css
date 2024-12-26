@@ -1,0 +1,40 @@
+.sidebar-links ul {
+  list-style: none;
+}
+
+.sidebar-links ul li {
+  font-size: 1.6rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-family: "Kantumruy Pro";
+  cursor: pointer;
+  padding: 1rem 2.4rem;
+}
+
+.sidebar-links ul li svg {
+  width: 2.4rem;
+  height: 1.6rem;
+  flex-shrink: 0;
+}
+
+.sidebar-links a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: #444444;
+  font-size: 1.7rem;
+}
+
+.sidebar-item.active {
+  background-color: #fcfcfc;
+}
+
+.sidebar-item.active a {
+  font-weight: bold;
+  color: #000000;
+}
+.sidebar-icon * {
+  stroke: #444444 !important;
+}
