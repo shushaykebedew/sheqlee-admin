@@ -21,6 +21,7 @@
   justify-content: center;
   gap: 3rem;
   flex: 2;
+  margin-left: 2rem;
 }
 .right {
   display: flex;
@@ -34,5 +35,10 @@
 }
 .percentage {
   font-size: 2rem;
+}
+.increased {
   color: #0f9d58;
+}
+.decreased {
+  color: red;
 }

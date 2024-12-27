@@ -1,0 +1,43 @@
+.topbar-items ul {
+  display: flex;
+}
+.topbar-items ul li {
+  background-color: #dfdfdf;
+}
+.topbar-items ul li:nth-child(1) {
+  border-bottom-left-radius: 10px;
+}
+.topbar-items ul li:nth-last-child(1) {
+  border-bottom-right-radius: 10px;
+}
+.topbar-items ul li a {
+  display: inline-block;
+  font-size: 2.2rem;
+  color: #000000;
+  text-decoration: none;
+  padding: 1rem;
+  border-left: 1px solid #444444;
+  font-weight: 500;
+}
+
+.topbar-item.active {
+  background-color: #000000;
+}
+
+.topbar-item.active a {
+  color: #ffffff;
+}
+/* li {
+  position: relative;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  left: 0; /* Position the border to the left 
+  top: 50%; /* Start from the middle of the list item 
+  transform: translateY(-50%); /* Center the border vertically 
+  height: 30%; /* Adjust for the height of the border 
+  width: 3px; /* Width of the left border 
+  background-color: #000; /* Color of the border 
+} */

@@ -27,7 +27,18 @@ function App() {
         <Route path="/activation-form" element={<ActivationForm />} />
 
         <Route path="/home" element={<HomePage />}>
+          <Route
+            index
+            element={
+              <>
+                <Dashboard />
+
+                <DashboardJobPosts />
+              </>
+            }
+          />
           <Route path="dashboard" element={<Dashboard />}>
+            <Route index element={<DashboardJobPosts />} />
             <Route path="dashboard-job-posts" element={<DashboardJobPosts />} />
           </Route>
           <Route path="job-posts" element={<JobPosts />} />

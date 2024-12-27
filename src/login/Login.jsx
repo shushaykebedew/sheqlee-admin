@@ -40,7 +40,7 @@ function Login() {
         password === userData.storedPassword &&
         email === userData.storedEmail
       ) {
-        navigate("/homepage");
+        navigate("/home");
       } else {
         setLoginError("User not found!");
       }
