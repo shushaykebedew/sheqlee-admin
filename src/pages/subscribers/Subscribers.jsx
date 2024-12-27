@@ -1,7 +1,7 @@
 import React from "react";
 
 function Subscribers() {
-  return <div>Subscribers</div>;
+  return <h1>Subscribers</h1>;
 }
 
 export default Subscribers;

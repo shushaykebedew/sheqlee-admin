@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const topbarItems = [
   {
     title: "Job Posts",
-    to: "dashboard-job-posts",
+    to: "job-posts",
   },
   {
     title: "Companies",
@@ -40,6 +40,10 @@ function TopbarItems() {
             onClick={() => handleItemClick(index)}
           >
             <Link to={item.to}>{item.title}</Link>
+
+            {index < topbarItems.length - 1 && activeIndex - 1 !== index && (
+              <span className={classes["vertical-line"]}></span>
+            )}
           </li>
         ))}
       </ul>

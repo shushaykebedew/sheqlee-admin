@@ -1,13 +1,4 @@
-:root {
-  --primary-color: #8967b3;
-  --secondary-color: #0c47ec;
-  --font-color: #000000;
-}
-
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
   overflow: hidden;
 }
 
@@ -20,43 +11,42 @@
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  font-family: "Kantumruy Pro";
 }
+
 .activation-form label {
   display: block;
   margin-bottom: 0.6rem;
   text-align: left;
-  font: normal normal bold 2rem/2.5rem "Kantumruy Pro";
+  font: bold 2.2rem/2.8rem "Kantumruy Pro";
   color: var(--font-color);
-  letter-spacing: 0;
 }
 
 .activation-form-container {
   width: 70rem;
 }
+
 .activation-form {
   display: flex;
   justify-content: space-between;
   gap: 3rem;
 }
+
 .left {
   flex: 1;
 }
+
 .right {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
+
 .action-buttons {
   align-self: flex-end;
 }
 
-/* .error-message {
-  color: red;
-  font-size: 1.6rem;
-  margin-bottom: 0.5rem;
-} */
 .activation-message {
-  font-size: 1.5rem;
-  margin-bottom: 2.8rem;
+  font-size: 1.6rem;
+  margin-bottom: 2.4rem;
+  padding-right: 1rem;
 }

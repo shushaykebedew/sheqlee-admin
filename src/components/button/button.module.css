@@ -9,13 +9,9 @@
   font-weight: bold;
   cursor: pointer;
   margin: 2rem 0;
-  font-family: "Kantumruy Pro";
+  font-family: var(--font-family);
 }
 
 .valid {
   background-color: var(--primary-color);
-}
-
-.button:disabled {
-  cursor: not-allowed;
 }

@@ -1,16 +1,3 @@
-/* .dropdown {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background-color: #000000;
-  color: #ffffff;
-}
-
-.dropdown:focus {
-  outline: none;
-} */
 .dropdownContainer {
   position: relative;
   display: inline-block;
@@ -23,7 +10,7 @@
   padding-right: 3.5rem;
   font-size: 1.6rem;
   border-radius: 6px;
-  appearance: none; /* Hide default arrow */
+  appearance: none;
   background-color: #000000;
   color: #ffffff;
   position: relative;
@@ -34,5 +21,5 @@
   top: 50%;
   right: 1rem;
   transform: translateY(-50%);
-  pointer-events: none; /* Prevent interaction with the icon */
+  pointer-events: none;
 }

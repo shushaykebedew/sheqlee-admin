@@ -27,7 +27,7 @@ function PasswordField({
             onClick={togglePasswordVisibility}
           >
             <FontAwesomeIcon
-              icon={showPassword ? faEyeSlash : faEye}
+              icon={showPassword ? faEye : faEyeSlash}
               className={classes["eye-icon"]}
             />
           </span>

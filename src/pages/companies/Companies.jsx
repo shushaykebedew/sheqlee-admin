@@ -1,7 +1,7 @@
 import React from "react";
 
 function Companies() {
-  return <div>Companies</div>;
+  return <h1>Companies</h1>;
 }
 
 export default Companies;

@@ -64,7 +64,7 @@ function ActivationForm() {
           <div className={classes["right"]}>
             <label>New Password</label>
             <PasswordField
-              placeholder="New Password..."
+              placeholder="Password..."
               value={passwordOne}
               onChange={(e) => setPasswordOne(e.target.value)}
               showEyeIcon={true}

@@ -1,40 +1,33 @@
 :root {
-  --primary-color: #8967b3;
-  --secondary-color: #0c47ec;
-  --font-color: #000000;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+  --input-focus-border: 2px solid var(--primary-color);
 }
 
 .input-field input {
   width: 100%;
-  height: 5rem;
+  height: 5.2rem;
   padding: 1rem 1.5rem;
   margin: 0.7rem 0;
   border: none;
   border-radius: 10px;
   font-size: 1.8rem;
-  color: #444444;
-  background-color: #dfdfdf;
+  color: var(--placeholder-color);
+  background-color: var(--input-bg-color);
   outline: none;
 }
 
 .input-field input:focus {
-  border-bottom: 2px solid var(--primary-color);
+  border-bottom: var(--input-focus-border);
 }
 
 .input-field input::placeholder {
-  font-family: inherit;
+  color: var(--placeholder-color);
   font-weight: normal;
   padding: 0.3rem;
 }
+
 .error-message {
-  color: red;
+  color: var(--error-color);
   font-size: 1.5rem;
   margin-bottom: 0.5rem;
+  padding-left: 1rem;
 }

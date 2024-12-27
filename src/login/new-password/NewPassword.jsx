@@ -50,7 +50,7 @@ function NewPassword() {
           <div className={classes.left}>
             <label>Enter Code</label>
             <p className={classes["forgot-message"]}>
-              We have sent a reset code to your email, Please enter the code
+              We have sent a reset code to your email. Please enter the code
               below.
             </p>
 
@@ -65,7 +65,7 @@ function NewPassword() {
           <div className={classes.right}>
             <label>New Password</label>
             <PasswordField
-              placeholder="New Password..."
+              placeholder="Password..."
               value={passwordOne}
               onChange={(e) => setPasswordOne(e.target.value)}
               showEyeIcon={true}
@@ -73,7 +73,7 @@ function NewPassword() {
               togglePasswordVisibility={togglePasswordVisibility}
             />
             <PasswordField
-              placeholder="Password..."
+              placeholder="Confirm Password..."
               value={passwordTwo}
               error={passwordError}
               onChange={(e) => setPasswordTwo(e.target.value)}

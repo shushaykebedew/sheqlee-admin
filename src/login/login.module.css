@@ -1,54 +1,65 @@
+/* variables.css */
 :root {
   --primary-color: #8967b3;
   --secondary-color: #0c47ec;
   --font-color: #000000;
+  --font-family: "Kantumruy Pro", sans-serif;
+  --error-color: red;
 }
 
+/* Global Styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  font-family: var(--font-family);
 }
 
+body {
+  font-family: var(--font-family);
+}
+
+/* Login Container */
 .login-container {
   width: 60rem;
-  margin: 7rem auto;
+  margin: 5rem auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  font-family: "Kantumruy Pro";
 }
+
+/* Form Elements */
 .login-form label {
   display: block;
   margin-bottom: 0.6rem;
-  text-align: left;
-  font: normal normal bold 2.3rem/2.8rem "Kantumruy Pro";
+  font: bold 2.3rem/2.8rem var(--font-family);
   color: var(--font-color);
-  letter-spacing: 0;
 }
 
 .form-container {
   width: 32rem;
 }
+
+/* Action Buttons */
 .action-buttons {
   display: flex;
-  justify-content: space-between !important;
+  justify-content: space-between;
   align-items: center;
   margin-top: 1rem;
 }
 
+/* Error Message */
 .error-message {
-  color: red;
+  color: var(--error-color);
   font-size: 1.6rem;
   margin-bottom: 1rem;
 }
 
+/* Reset Link */
 .reset-link {
   font-size: 1.6rem;
-  display: inline-block;
 }
 
 .reset-link a {
@@ -60,10 +71,13 @@
 .reset-link a:hover {
   text-decoration: underline;
 }
+
+/* First-time Text */
 .first-time-text {
   font-size: 1.5rem;
   margin-top: 1rem;
 }
+
 .first-time-text a {
   color: var(--secondary-color);
   font-weight: bold;
