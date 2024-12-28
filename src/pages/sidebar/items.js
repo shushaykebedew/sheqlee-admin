@@ -1,5 +1,6 @@
 export const sidebarItems = [
   {
+    id: 1,
     title: "Dashboard",
     to: "dashboard",
     icon: ` <svg
@@ -46,6 +47,7 @@ export const sidebarItems = [
               </svg>`,
   },
   {
+    id: 2,
     title: "Job Posts",
     to: "job-posts",
     icon: `<svg
@@ -177,6 +179,7 @@ export const sidebarItems = [
               </svg>`,
   },
   {
+    id: 3,
     title: "Companies",
     to: "companies",
     icon: `<svg
@@ -236,6 +239,7 @@ export const sidebarItems = [
               </svg>`,
   },
   {
+    id: 4,
     title: "Freelancers",
     to: "freelancers",
     icon: `<svg
@@ -257,6 +261,7 @@ export const sidebarItems = [
               </svg>`,
   },
   {
+    id: 5,
     title: "Categories",
     to: "categories",
     icon: `<svg
@@ -370,6 +375,7 @@ export const sidebarItems = [
               </svg>`,
   },
   {
+    id: 6,
     title: "Tags",
     to: "tags",
     icon: ` <svg
@@ -411,6 +417,7 @@ export const sidebarItems = [
               </svg>`,
   },
   {
+    id: 7,
     title: "Subscribers",
     to: "subscribers",
     icon: `<svg
@@ -434,6 +441,7 @@ export const sidebarItems = [
               </svg>`,
   },
   {
+    id: 8,
     title: "System Config",
     to: "system-config",
     icon: ` <svg
@@ -455,6 +463,7 @@ export const sidebarItems = [
               </svg>`,
   },
   {
+    id: 9,
     title: "Users",
     to: "users",
     icon: ` <svg

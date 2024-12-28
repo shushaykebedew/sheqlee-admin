@@ -5,13 +5,16 @@ import Hero from "../../components/hero/Hero";
 import Button from "../../components/button/Button";
 import InputField from "../../components/input-field/InputField";
 import useEmailValidation from "../../hooks/useEmailValidation";
+import { useState } from "react";
 
 function AccountActivation() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
   const { email, emailIsValid, emailError, handleEmailChange } =
     useEmailValidation();
 
   function handleReset(e) {
+    setIsSubmitted(true);
     e.preventDefault();
     if (emailIsValid) {
       navigate("/activation-form", { state: { email } });
@@ -35,7 +38,7 @@ function AccountActivation() {
             placeholder="Your email..."
             value={email}
             onChange={handleEmailChange}
-            error={emailError}
+            error={isSubmitted && emailError}
           />
 
           <div className={classes["action-buttons"]}>

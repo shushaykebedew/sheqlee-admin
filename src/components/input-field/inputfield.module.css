@@ -15,9 +15,9 @@
   outline: none;
 }
 
-.input-field input:focus {
+/* .input-field input:focus {
   border-bottom: var(--input-focus-border);
-}
+} */
 
 .input-field input::placeholder {
   color: var(--placeholder-color);

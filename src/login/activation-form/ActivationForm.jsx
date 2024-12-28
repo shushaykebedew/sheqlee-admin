@@ -11,7 +11,7 @@ function ActivationForm() {
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const { resetCode, setResetCode, resetCodeError, validateResetCode } =
     useResetCodeValidation();
 
@@ -24,6 +24,7 @@ function ActivationForm() {
   }, [resetCode]);
 
   function handleSubmit(e) {
+    setIsSubmitted(true);
     e.preventDefault();
     if (!passwordError && !resetCodeError) {
       console.log("Password successfully reset!");
@@ -58,7 +59,7 @@ function ActivationForm() {
               placeholder="Enter Code"
               value={resetCode}
               onChange={(e) => setResetCode(e.target.value)}
-              error={resetCodeError}
+              error={isSubmitted && resetCodeError}
             />
           </div>
           <div className={classes["right"]}>
@@ -75,7 +76,7 @@ function ActivationForm() {
             <PasswordField
               placeholder="Confirm Password..."
               value={passwordTwo}
-              error={passwordError}
+              error={isSubmitted && passwordError}
               onChange={(e) => setPasswordTwo(e.target.value)}
               showEyeIcon={false}
               showPassword={showPassword}

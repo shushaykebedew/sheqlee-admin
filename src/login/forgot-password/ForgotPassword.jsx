@@ -4,13 +4,16 @@ import Button from "../../components/button/Button";
 import InputField from "../../components/input-field/InputField";
 import useEmailValidation from "../../hooks/useEmailValidation";
 import classes from "./forgotpassword.module.css";
+import { useState } from "react";
 
 function ForgotPassword() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
   const { email, emailIsValid, emailError, handleEmailChange } =
     useEmailValidation();
 
   function handleReset(e) {
+    setIsSubmitted(true);
     e.preventDefault();
     if (emailIsValid) {
       navigate("/new-password", { state: { email } });
@@ -36,7 +39,7 @@ function ForgotPassword() {
             placeholder="Your email..."
             value={email}
             onChange={handleEmailChange}
-            error={emailError}
+            error={isSubmitted && emailError}
           />
 
           <div className={classes["action-buttons"]}>

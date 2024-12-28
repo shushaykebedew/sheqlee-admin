@@ -1,0 +1,11 @@
+.job-posts {
+  overflow: auto;
+}
+
+.filter-by {
+  height: 17rem;
+}
+
+.job-posts-table {
+  overflow-y: auto;
+}

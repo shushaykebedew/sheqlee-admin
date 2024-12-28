@@ -16,10 +16,11 @@ const userData = {
 function Login() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
-  const { email, emailError, handleEmailChange } = useEmailValidation();
-  const { passwordError } = usePasswordValidation(password);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const [loginError, setLoginError] = useState("");
+  const { passwordError } = usePasswordValidation(password);
+  const { email, emailError, handleEmailChange } = useEmailValidation();
+  const navigate = useNavigate();
 
   function handlePasswordChange(e) {
     const newPassword = e.target.value;
@@ -35,6 +36,8 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    setIsSubmitted(true);
+
     if (isFormValid) {
       if (
         password === userData.storedPassword &&
@@ -58,14 +61,14 @@ function Login() {
             placeholder="Email..."
             value={email}
             onChange={handleEmailChange}
-            error={emailError}
+            error={isSubmitted && emailError}
           />
 
           <PasswordField
             placeholder="Password..."
             value={password}
             onChange={handlePasswordChange}
-            error={passwordError}
+            error={isSubmitted && passwordError}
             showEyeIcon
             showPassword={showPassword}
             togglePasswordVisibility={togglePasswordVisibility}

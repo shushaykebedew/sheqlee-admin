@@ -12,6 +12,7 @@ function NewPassword() {
   const [passwordOne, setPasswordOne] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const { resetCode, setResetCode, resetCodeError, validateResetCode } =
     useResetCodeValidation();
@@ -25,6 +26,7 @@ function NewPassword() {
   }, [resetCode]);
 
   function handleSubmit(e) {
+    setIsSubmitted(true);
     e.preventDefault();
     if (resetCodeError) {
       console.log("Password successfully reset!");
@@ -59,7 +61,7 @@ function NewPassword() {
               placeholder="Enter Code"
               value={resetCode}
               onChange={(e) => setResetCode(e.target.value)}
-              error={resetCodeError}
+              error={isSubmitted && resetCodeError}
             />
           </div>
           <div className={classes.right}>
@@ -75,7 +77,7 @@ function NewPassword() {
             <PasswordField
               placeholder="Confirm Password..."
               value={passwordTwo}
-              error={passwordError}
+              error={isSubmitted && passwordError}
               onChange={(e) => setPasswordTwo(e.target.value)}
               showEyeIcon={false}
               showPassword={showPassword}

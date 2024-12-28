@@ -1,28 +1,7 @@
-/* variables.css */
-:root {
-  --primary-color: #8967b3;
-  --secondary-color: #0c47ec;
-  --font-color: #000000;
-  --font-family: "Kantumruy Pro", sans-serif;
-  --error-color: red;
-}
-
-/* Global Styles */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: var(--font-family);
-}
-
-body {
-  font-family: var(--font-family);
-}
-
 /* Login Container */
 .login-container {
   width: 60rem;
-  margin: 5rem auto;
+  margin: 4.8rem auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

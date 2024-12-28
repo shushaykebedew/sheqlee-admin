@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import classes from "./sidebaritems.module.css";
 import { sidebarItems } from "./items";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 function SidebarItems() {
-  const [activeIndex, setActiveIndex] = useState(0);
   const navigate = useNavigate();
+
+  const [activeIndex, setActiveIndex] = useLocalStorage(0, "activeIndex");
 
   const handleItemClick = (index, path) => {
     setActiveIndex(index);

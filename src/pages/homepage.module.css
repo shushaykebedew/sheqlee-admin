@@ -3,6 +3,7 @@
   grid-template-columns: 28rem 1fr;
   column-gap: 3rem;
   background-color: #fcfcfc;
+  overflow: auto;
 }
 
 .right {
