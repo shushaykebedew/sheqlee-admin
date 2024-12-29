@@ -24,7 +24,7 @@
 }
 
 .jobs-table th {
-  padding: 1.5rem 1rem;
+  padding: 1.2rem 1rem;
   background-color: var(--input-bg-color);
   color: #000000;
   font-weight: 500;
@@ -67,12 +67,12 @@
 }
 .pagination {
   padding: 2rem;
-  padding-left: 64rem;
-  font-size: 1.6rem;
+  padding-left: 60rem;
+  font-size: 1.5rem;
   height: 6rem;
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 2.4rem;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
   background-color: var(--input-bg-color);
@@ -101,11 +101,11 @@
   padding-left: 0.5rem;
   display: flex;
 }
-.polygon-icon svg {
+/* .polygon-icon svg {
   margin-left: 0.9rem;
   height: 1rem;
   cursor: pointer;
-}
+} */
 ul {
   list-style: none;
 }

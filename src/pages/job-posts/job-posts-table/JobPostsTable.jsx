@@ -3,10 +3,9 @@ import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import classes from "./jobpoststable.module.css";
 import statusRed from "../../../images/switch-red.png";
 import statusGreen from "../../../images/switch-green.png";
-import { dummyJobPosts } from "./data";
 import { EditIcon, DeleteIcon, LinkIcon, PolygonIcon } from "../../../SvgIcons";
 
-function JobPostsTable() {
+function JobPostsTable({ dummyJobPosts }) {
   const [rowsPerPage, setRowsPerPage] = useState(7);
   const [currentPage, setCurrentPage] = useState(1);
 

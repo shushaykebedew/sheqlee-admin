@@ -1,0 +1,56 @@
+.dropdown-container {
+  position: relative;
+}
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper select {
+  width: 100%;
+  padding: 1.2rem 3.5rem 1.2rem 1.5rem;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  background-color: var(--input-bg-color);
+  color: var(--placeholder-color);
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  /* remove the default arrow*/
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.select-wrapper select:focus {
+  border: none;
+  outline: none;
+}
+
+.select-wrapper svg {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  height: 1.2rem;
+}
+
+.select-wrapper select option {
+  background-color: #dfdfdf;
+  padding: 0.8rem;
+  font-size: 1.6rem;
+}
+
+.select-wrapper select option:hover {
+  background-color: initial;
+}
+
+.select-wrapper select option:not(:last-child) {
+  border-bottom: 1px solid #ccc; /* Add border between options */
+}

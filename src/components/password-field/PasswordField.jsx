@@ -1,5 +1,4 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { Eye, EyeSlash } from "../../SvgIcons";
 
 import classes from "./passwordfield.module.css";
 
@@ -23,13 +22,12 @@ function PasswordField({
         />
         {showEyeIcon && (
           <span
-            className={classes["show-eye-icon"]}
+            className={`${classes["show-eye-icon"]} ${
+              showPassword ? classes.eye : classes.eyeslash
+            }`}
             onClick={togglePasswordVisibility}
           >
-            <FontAwesomeIcon
-              icon={showPassword ? faEye : faEyeSlash}
-              className={classes["eye-icon"]}
-            />
+            {showPassword ? <Eye /> : <EyeSlash />}
           </span>
         )}
       </div>

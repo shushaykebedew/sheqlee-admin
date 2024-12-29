@@ -1,11 +1,11 @@
 .job-posts {
   overflow: auto;
-}
-
-.filter-by {
-  height: 17rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 .job-posts-table {
   overflow-y: auto;
+  overflow-x: hidden;
 }
