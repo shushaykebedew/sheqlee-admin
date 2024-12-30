@@ -30,10 +30,14 @@ function DatePicker() {
   );
 }
 
-function SearchInput() {
+function SearchInput({ onSearchChange }) {
   return (
     <div className={classes["search-input"]}>
-      <input type="text" placeholder="Search by title or company name..." />
+      <input
+        type="text"
+        placeholder="Search by title or company name..."
+        onChange={(e) => onSearchChange(e.target.value)}
+      />
       <span className={classes["search-icon"]}>
         <SearchIcon />
       </span>
@@ -41,7 +45,7 @@ function SearchInput() {
   );
 }
 
-function Filteration({ onFilterChange }) {
+function Filteration({ onFilterChange, onSearchChange }) {
   return (
     <div className={classes.filteration}>
       <div className={classes.titles}>
@@ -51,20 +55,20 @@ function Filteration({ onFilterChange }) {
         <div className={classes["filteration-dropdowns"]}>
           <div className={classes["filteration-group"]}>
             <FilterByStatus onFilterChange={onFilterChange} />
-            <FilterByAction />
+            <FilterByAction onFilterChange={onFilterChange} />
           </div>
           <div className={classes["filteration-group"]}>
             <FilterByCategory />
-            <FilterByJobType />
+            <FilterByJobType onFilterChange={onFilterChange} />
           </div>
           <div className={classes["filteration-group"]}>
             <FilterByTags />
-            <FilterBySkillLevel />
+            <FilterBySkillLevel onFilterChange={onFilterChange} />
           </div>
         </div>
         <div className={classes.search}>
           <DatePicker />
-          <SearchInput />
+          <SearchInput onSearchChange={onSearchChange} />
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import { PolygonDown } from "../../../SvgIcons";
 import { useState } from "react";
 import classes from "./dropdown-backdrop.module.css";
 
-function FilterBySkillLevel() {
+function FilterBySkillLevel({ onFilterChange }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const options = [
     { value: "", label: "Skill Level" },
@@ -107,6 +107,11 @@ function FilterBySkillLevel() {
     </span>
   );
 
+  const handleFilterChange = (selectedOption) => {
+    console.log(selectedOption.value);
+    onFilterChange(selectedOption.value);
+  };
+
   return (
     <>
       {isDropdownOpen && (
@@ -125,6 +130,7 @@ function FilterBySkillLevel() {
           components={{ DropdownIndicator }}
           onMenuOpen={() => setIsDropdownOpen(true)}
           onMenuClose={() => setIsDropdownOpen(false)}
+          onChange={handleFilterChange}
         />
       </div>
     </>

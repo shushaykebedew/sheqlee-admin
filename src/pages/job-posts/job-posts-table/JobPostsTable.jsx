@@ -58,7 +58,7 @@ function JobPostsTable({ dummyJobPosts }) {
               <td>
                 <div className={classes.action}>
                   <span className={classes["status-icon"]}>
-                    {post.status === "Active" ? (
+                    {post.action === "Active" ? (
                       <img src={statusGreen} alt="active" />
                     ) : (
                       <img src={statusRed} alt="inactive" />

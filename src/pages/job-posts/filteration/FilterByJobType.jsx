@@ -3,7 +3,7 @@ import { PolygonDown } from "../../../SvgIcons";
 import { useState } from "react";
 import classes from "./dropdown-backdrop.module.css";
 
-function FilterByJobType() {
+function FilterByJobType({ onFilterChange }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const options = [
     { value: "", label: "Job Type" },
@@ -104,6 +104,11 @@ function FilterByJobType() {
     </span>
   );
 
+  const handleFilterChange = (selectedOption) => {
+    console.log(selectedOption.value);
+    onFilterChange(selectedOption.value);
+  };
+
   return (
     <>
       {isDropdownOpen && (
@@ -122,6 +127,7 @@ function FilterByJobType() {
           components={{ DropdownIndicator }}
           onMenuOpen={() => setIsDropdownOpen(true)}
           onMenuClose={() => setIsDropdownOpen(false)}
+          onChange={handleFilterChange}
         />
       </div>
     </>

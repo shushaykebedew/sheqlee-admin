@@ -3,7 +3,7 @@ import Select from "react-select";
 import { PolygonDown } from "../../../SvgIcons";
 import classes from "./dropdown-backdrop.module.css";
 
-function FilterByAction() {
+function FilterByAction({ onFilterChange }) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const options = [
@@ -110,6 +110,9 @@ function FilterByAction() {
     setIsDropdownOpen(false);
   };
 
+  const handleFilterChange = (selectedOption) => {
+    onFilterChange(selectedOption.value);
+  };
   return (
     <div>
       {/* Backdrop */}
@@ -131,6 +134,7 @@ function FilterByAction() {
           components={{ DropdownIndicator }}
           onMenuOpen={handleMenuOpen}
           onMenuClose={handleMenuClose}
+          onChange={handleFilterChange}
         />
       </div>
     </div>
