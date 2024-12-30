@@ -21,6 +21,62 @@
   flex-direction: column;
   gap: 1.2rem;
 }
+
+/* dropdown*/
+.dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-container select {
+  width: 100%;
+  padding: 1.2rem 3.5rem 1.2rem 1.5rem;
+  font-size: 1.6rem;
+  border-radius: 5px;
+  background-color: var(--input-bg-color);
+  color: var(--placeholder-color);
+  cursor: pointer;
+  border: none;
+  font-family: inherit;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  /* remove the default arrow */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.dropdown-container select:focus {
+  border: none;
+  outline: none;
+}
+
+.dropdown-container svg {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  height: 1.2rem;
+}
+
+.filter-by-job-type select,
+.filter-by-category select {
+  width: 20rem;
+}
+
+.filter-by-skill-level select,
+.filter-by-tags select {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  width: 20rem;
+}
+.filter-by-action select,
+.filter-by-status select {
+  width: 15rem;
+}
+/*      *****************  Searching   ******************     */
 .search {
   display: flex;
   align-items: center;
@@ -28,11 +84,16 @@
   gap: 1.5rem;
   margin-left: 17rem;
 }
+
 .date-picker {
-  background-color: var(--input-bg-color);
-  padding: 0.8rem 1rem;
-  border-radius: 8px;
+  all: unset;
+  border: none;
+  outline: none;
   cursor: pointer;
+  background-color: var(--input-bg-color);
+  padding: 0rem 0.8rem;
+  border-radius: 8px;
+  height: 100%;
 }
 .date-picker svg {
   height: 2.5rem;

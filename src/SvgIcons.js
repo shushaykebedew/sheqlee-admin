@@ -104,13 +104,8 @@ export const EyeSlash = () => (
   </svg>
 );
 
-export const PolygonDown = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="22"
-    height="19.556"
-    viewBox="0 0 22 19.556"
-  >
+export const PolygonDown = (props) => (
+  <svg xmlns="http://www.w3.org/2000/svg" {...props} viewBox="0 0 22 19.556">
     <path
       id="Polygon_15"
       data-name="Polygon 15"
@@ -164,6 +159,23 @@ export const SearchIcon = () => (
       data-name="Icon awesome-search"
       d="M31.264,27.407l-6.172-6.172a1.485,1.485,0,0,0-1.052-.433H23.03A12.871,12.871,0,1,0,20.8,23.03v1.009a1.485,1.485,0,0,0,.433,1.052l6.172,6.172a1.48,1.48,0,0,0,2.1,0l1.752-1.752a1.493,1.493,0,0,0,.006-2.1ZM12.877,20.8A7.924,7.924,0,1,1,20.8,12.877,7.92,7.92,0,0,1,12.877,20.8Z"
       fill="#444"
+    />
+  </svg>
+);
+
+export const CancelIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="44.476"
+    height="44.476"
+    viewBox="0 0 44.476 44.476"
+  >
+    <path
+      id="Icon_metro-cancel"
+      data-name="Icon metro-cancel"
+      d="M24.809,1.928A22.238,22.238,0,1,0,47.047,24.166,22.238,22.238,0,0,0,24.809,1.928Zm0,40.307A18.068,18.068,0,1,1,42.877,24.166,18.069,18.069,0,0,1,24.809,42.235Zm6.949-29.188L24.809,20l-6.949-6.949-4.17,4.17,6.949,6.949L13.69,31.116l4.17,4.17,6.949-6.949,6.949,6.949,4.17-4.17-6.949-6.949,6.949-6.949Z"
+      transform="translate(-2.571 -1.928)"
+      fill="#fff"
     />
   </svg>
 );

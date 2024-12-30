@@ -9,3 +9,6 @@
   overflow-y: auto;
   overflow-x: hidden;
 }
+.date-modal {
+  font-size: 1.6rem;
+}
