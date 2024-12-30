@@ -5,13 +5,27 @@ import Filteration from "./filteration/Filteration";
 import { useState } from "react";
 
 function JobPosts() {
+  const [filteredJobs, setFilteredJobs] = useState(dummyJobPosts);
+
+  const handleFilterChange = (filterCriteria) => {
+    const filtered = dummyJobPosts.filter((jobPost) => {
+      const jobStatus = jobPost.status.toLowerCase();
+
+      if (filterCriteria === "all-status") return true;
+      if (filterCriteria === "active") return jobStatus === "active";
+      if (filterCriteria === "inactive") return jobStatus === "inactive"; // Changed from "deactivated"
+      return true;
+    });
+
+    setFilteredJobs(filtered);
+  };
   return (
     <div className={classes["job-posts"]}>
       <div className={classes["filters"]}>
-        <Filteration dummyJobPosts={dummyJobPosts} />
+        <Filteration onFilterChange={handleFilterChange} />
       </div>
       <div className="job-posts-table">
-        <JobPostsTable dummyJobPosts={dummyJobPosts} />
+        <JobPostsTable dummyJobPosts={filteredJobs} />
       </div>
     </div>
   );
