@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Select from "react-select";
 import { PolygonDown } from "../../../SvgIcons";
 import classes from "./dropdown-backdrop.module.css";
+import { JobsContext } from "../JobPosts";
 
 function FilterByCategory() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const { onFilterChange } = useContext(JobsContext);
 
   const options = [
     { value: "", label: "Category" },
@@ -17,8 +20,20 @@ function FilterByCategory() {
     },
     { value: "database-development", label: "Database Development" },
     {
+      value: "cybersecurity",
+      label: "Cybersecurity",
+    },
+    {
+      value: "ui-ux-design",
+      label: "UI/UX Design",
+    },
+    {
       value: "embedded-systems-development",
       label: "Embedded Systems Development",
+    },
+    {
+      value: "frontend-development",
+      label: "Frontend Development",
     },
   ];
 
@@ -54,6 +69,17 @@ function FilterByCategory() {
       ...provided,
       padding: "0 2.5rem 0 1rem",
     }),
+    placeholder: (provided) => ({
+      ...provided,
+      color: "var(--placeholder-color)",
+      whiteSpace: "nowrap",
+      textOverflow: "ellipsis",
+      overflow: "hidden",
+    }),
+    singleValue: (provided) => ({
+      ...provided,
+      color: "var(--placeholder-color)",
+    }),
     dropdownIndicator: (provided) => ({
       ...provided,
       color: "var(--icon-color)",
@@ -74,14 +100,17 @@ function FilterByCategory() {
       whiteSpace: "nowrap",
       overflow: "hidden",
     }),
-    option: (provided, state) => ({
-      ...provided,
-      fontSize: "1.4rem",
-      whiteSpace: "nowrap",
-      textOverflow: "ellipsis",
-      overflow: "hidden",
-      borderBottom: state.data.isLast ? "none" : "1px solid #B4B4B4",
-    }),
+    option: (provided, state) => {
+      const isLast = state.data.isLast;
+      return {
+        ...provided,
+        fontSize: "1.4rem",
+        whiteSpace: "nowrap",
+        textOverflow: "ellipsis",
+        overflow: "hidden",
+        borderBottom: isLast ? "none" : "1px solid #B4B4B4",
+      };
+    },
   };
 
   const DropdownIndicator = () => (
@@ -96,6 +125,10 @@ function FilterByCategory() {
       <PolygonDown style={{ height: "1.3rem", width: "1.3rem" }} />
     </span>
   );
+
+  const handleFilterChange = (selectedOption) => {
+    onFilterChange(`category:${selectedOption.value}`);
+  };
 
   return (
     <>
@@ -116,6 +149,7 @@ function FilterByCategory() {
           components={{ DropdownIndicator }}
           onMenuOpen={() => setIsDropdownOpen(true)}
           onMenuClose={() => setIsDropdownOpen(false)}
+          onChange={handleFilterChange}
         />
       </div>
     </>

@@ -1,82 +1,115 @@
+import { createContext, useReducer } from "react";
 import JobPostsTable from "./job-posts-table/JobPostsTable";
 import classes from "./jobposts.module.css";
 import { dummyJobPosts } from "./data";
 import Filteration from "./filteration/Filteration";
-import { useState } from "react";
+
+export const JobsContext = createContext();
+
+const jobPostsReducer = (state, action) => {
+  switch (action.type) {
+    case "SET_FILTER": {
+      const { filterType, filterValue } = action.payload;
+
+      const updatedFilters = {
+        ...state.filters,
+        [filterType]: filterValue,
+      };
+
+      const filteredJobs = dummyJobPosts.filter((jobPost) =>
+        Object.entries(updatedFilters).every(([key, value]) => {
+          if (value.startsWith("all-") || !value) return true;
+          const jobValue = jobPost[key]?.toLowerCase() || "";
+          return jobValue === value.toLowerCase();
+        })
+      );
+
+      return { ...state, filters: updatedFilters, filteredJobs };
+    }
+
+    case "SET_SEARCH": {
+      const searchQuery = action.payload;
+
+      if (!searchQuery.trim()) {
+        return { ...state, searchQuery };
+      }
+
+      const searchedJobs = state.filteredJobs.filter((jobPost) => {
+        const jobTitle = jobPost.title?.toLowerCase() || "";
+        const companyName = jobPost.company?.toLowerCase() || "";
+        const query = searchQuery.toLowerCase();
+
+        return jobTitle.includes(query) || companyName.includes(query);
+      });
+
+      return { ...state, searchQuery, filteredJobs: searchedJobs };
+    }
+
+    default:
+      console.error(`Unhandled action type: ${action.type}`);
+      return state;
+
+    case "SET_DATE_RANGE": {
+      const { startDate, endDate } = action.payload;
+
+      const filteredByDate = dummyJobPosts.filter((jobPost) => {
+        const jobDate = new Date(jobPost.postDate); // Assuming `postedDate` exists in job posts
+        if (startDate && jobDate < new Date(startDate)) return false;
+        if (endDate && jobDate > new Date(endDate)) return false;
+        return true;
+      });
+
+      return {
+        ...state,
+        dateRange: { startDate, endDate },
+        filteredJobs: filteredByDate,
+      };
+    }
+  }
+};
 
 function JobPosts() {
-  const [filteredJobs, setFilteredJobs] = useState(dummyJobPosts);
-  const [searchQuery, setSearchQuery] = useState("");
+  const initialState = {
+    filters: {},
+    searchQuery: "",
+    dateRange: { startDate: null, endDate: null },
+    filteredJobs: dummyJobPosts,
+  };
+
+  const [state, dispatch] = useReducer(jobPostsReducer, initialState);
 
   const handleFilterChange = (filterCriteria) => {
-    const filtered = dummyJobPosts.filter((jobPost) => {
-      const jobStatus = jobPost.status ? jobPost.status.toLowerCase() : "";
-      const jobAction = jobPost.action ? jobPost.action.toLowerCase() : "";
-      const jobSkill = jobPost.skills ? jobPost.skills.toLowerCase() : "";
-      const jobType = jobPost.jobType ? jobPost.jobType.toLowerCase() : "";
-
-      // filter by status
-      if (filterCriteria === "all-status") return true;
-      if (filterCriteria === "active") return jobStatus === "active";
-      if (filterCriteria === "inactive") return jobStatus === "inactive";
-
-      // filter by action
-      if (filterCriteria === "all-actions") return true;
-      if (filterCriteria === "active") return jobAction === "active";
-      if (filterCriteria === "deactivated") return jobAction === "deactivated";
-
-      // filter by skill-level
-      if (filterCriteria === "all-skills") return true;
-      if (filterCriteria === "beginner") return jobSkill === "beginner";
-      if (filterCriteria === "intermediate") return jobSkill === "intermediate";
-      if (filterCriteria === "expert") return jobSkill === "expert";
-
-      // filter by job type
-      if (filterCriteria === "all-job-types") return true;
-      if (filterCriteria === "contract") return jobType === "contract";
-      if (filterCriteria === "full-time") return jobType === "fulltime";
-      if (filterCriteria === "part-time") return jobType === "part-time";
-      if (filterCriteria === "per-project") return jobType === "per-project";
-      if (filterCriteria === "temporary") return jobType === "temporary";
-
-      return true;
-    });
-
-    setFilteredJobs(filtered);
+    const [filterType, filterValue] = filterCriteria.split(":");
+    dispatch({ type: "SET_FILTER", payload: { filterType, filterValue } });
   };
 
   const handleSearchChange = (searchValue) => {
-    setSearchQuery(searchValue);
+    dispatch({ type: "SET_SEARCH", payload: searchValue });
+  };
 
-    if (searchValue === "") {
-      setFilteredJobs(dummyJobPosts);
-    } else {
-      const searchedJobs = dummyJobPosts.filter((jobPost) => {
-        const jobTitle = jobPost.title ? jobPost.title.toLowerCase() : "";
-        const companyName = jobPost.company
-          ? jobPost.company.toLowerCase()
-          : "";
-        return (
-          jobTitle.includes(searchValue.toLowerCase()) ||
-          companyName.includes(searchValue.toLowerCase())
-        );
-      });
-      setFilteredJobs(searchedJobs);
-    }
+  const handleDateRangeChange = (startDate, endDate) => {
+    dispatch({ type: "SET_DATE_RANGE", payload: { startDate, endDate } });
   };
 
   return (
-    <div className={classes["job-posts"]}>
-      <div className={classes["filters"]}>
-        <Filteration
-          onFilterChange={handleFilterChange}
-          onSearchChange={handleSearchChange}
-        />
+    <JobsContext.Provider
+      value={{
+        onFilterChange: handleFilterChange,
+        onSearchChange: handleSearchChange,
+        dummyJobPosts: state.filteredJobs,
+        onApply: (startDate, endDate) =>
+          handleDateRangeChange(startDate, endDate),
+      }}
+    >
+      <div className={classes["job-posts"]}>
+        <div className={classes["filters"]}>
+          <Filteration />
+        </div>
+        <div className="job-posts-table">
+          <JobPostsTable />
+        </div>
       </div>
-      <div className="job-posts-table">
-        <JobPostsTable dummyJobPosts={filteredJobs} />
-      </div>
-    </div>
+    </JobsContext.Provider>
   );
 }
 

@@ -1,16 +1,20 @@
 import Select from "react-select";
 import { PolygonDown } from "../../../SvgIcons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import classes from "./dropdown-backdrop.module.css";
+import { JobsContext } from "../JobPosts";
 
-function FilterByJobType({ onFilterChange }) {
+function FilterByJobType() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const { onFilterChange } = useContext(JobsContext);
+
   const options = [
     { value: "", label: "Job Type" },
     { value: "all-job-types", label: "All Job Types" },
     { value: "contract", label: "Contract" },
     { value: "part-time", label: "Part-time" },
-    { value: "full-time", label: "Full-time" },
+    { value: "fulltime", label: "Full-time" },
     { value: "per-project", label: "Per-project" },
     { value: "temporary", label: "Temporary" },
   ];
@@ -105,8 +109,7 @@ function FilterByJobType({ onFilterChange }) {
   );
 
   const handleFilterChange = (selectedOption) => {
-    console.log(selectedOption.value);
-    onFilterChange(selectedOption.value);
+    onFilterChange(`jobType:${selectedOption.value}`);
   };
 
   return (

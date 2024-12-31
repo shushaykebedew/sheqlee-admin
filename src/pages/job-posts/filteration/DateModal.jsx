@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext, useRef } from "react";
 import ReactDOM from "react-dom";
 import Datetime from "react-datetime";
-import "react-datetime/css/react-datetime.css"; // Import the default styles
+import "react-datetime/css/react-datetime.css";
 import classes from "./datemodal.module.css";
 import { CalendarIcon, CancelIcon } from "../../../SvgIcons";
+import { JobsContext } from "../JobPosts";
 
 function Backdrop({ onClose }) {
   return (
@@ -22,11 +23,35 @@ function DatePickerModal({ children }) {
 function DateModal({ isOpen, onClose }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const { onApply } = useContext(JobsContext);
+
+  // Create refs for the input fields
+  const startDateRef = useRef(null);
+  const endDateRef = useRef(null);
 
   const handleApplyFilters = () => {
-    console.log("Start Date:", startDate);
-    console.log("End Date:", endDate);
+    console.log("Applying filters:", startDate, endDate);
+    console.log("onApply function:", onApply);
+
+    if (onApply) {
+      onApply(startDate, endDate);
+    } else {
+      console.error("onApply is undefined");
+    }
+
     onClose();
+  };
+
+  const focusStartDateInput = () => {
+    if (startDateRef.current) {
+      startDateRef.current.querySelector("input").focus();
+    }
+  };
+
+  const focusEndDateInput = () => {
+    if (endDateRef.current) {
+      endDateRef.current.querySelector("input").focus();
+    }
   };
 
   if (!isOpen) {
@@ -44,7 +69,10 @@ function DateModal({ isOpen, onClose }) {
           <div className={classes["date-picker-modal"]}>
             <h2>FILTER BY DATE</h2>
             <div className={classes["date-picker-inputs"]}>
-              <div className={classes["date-picker-wrapper"]}>
+              <div
+                className={classes["date-picker-wrapper"]}
+                ref={startDateRef}
+              >
                 <Datetime
                   value={startDate}
                   onChange={(date) => setStartDate(date)}
@@ -53,9 +81,14 @@ function DateModal({ isOpen, onClose }) {
                     className: classes.input,
                   }}
                 />
-                <CalendarIcon className={classes["calendar-icon"]} />
+                <button
+                  onClick={focusStartDateInput}
+                  className={classes["calendar-icon"]}
+                >
+                  <CalendarIcon />
+                </button>
               </div>
-              <div className={classes["date-picker-wrapper"]}>
+              <div className={classes["date-picker-wrapper"]} ref={endDateRef}>
                 <Datetime
                   value={endDate}
                   onChange={(date) => setEndDate(date)}
@@ -64,7 +97,12 @@ function DateModal({ isOpen, onClose }) {
                     className: classes.input,
                   }}
                 />
-                <CalendarIcon className={classes["calendar-icon"]} />
+                <button
+                  onClick={focusEndDateInput}
+                  className={classes["calendar-icon"]}
+                >
+                  <CalendarIcon />
+                </button>
               </div>
             </div>
             <div className={classes["date-picker-action"]}>

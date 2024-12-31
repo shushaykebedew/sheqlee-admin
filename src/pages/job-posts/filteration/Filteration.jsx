@@ -1,15 +1,17 @@
+import { useContext, useState } from "react";
+
 import classes from "./filteration.module.css";
 import Headers from "./Headers";
 import { SearchIcon, CalendarIcon, PolygonDown } from "../../../SvgIcons";
-import Select from "react-select";
+
 import DateModal from "./DateModal";
-import { useState } from "react";
 import FilterByStatus from "./FilterByStatus";
 import FilterByAction from "./FilterByAction";
 import FilterByCategory from "./FilterByCategory";
 import FilterByJobType from "./FilterByJobType";
 import FilterByTags from "./FilterByTags";
 import FilterBySkillLevel from "./FilterBySkillLevel";
+import { JobsContext } from "../JobPosts";
 
 function DatePicker() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +32,8 @@ function DatePicker() {
   );
 }
 
-function SearchInput({ onSearchChange }) {
+function SearchInput() {
+  const { onSearchChange } = useContext(JobsContext);
   return (
     <div className={classes["search-input"]}>
       <input
@@ -45,7 +48,7 @@ function SearchInput({ onSearchChange }) {
   );
 }
 
-function Filteration({ onFilterChange, onSearchChange }) {
+function Filteration() {
   return (
     <div className={classes.filteration}>
       <div className={classes.titles}>
@@ -54,21 +57,21 @@ function Filteration({ onFilterChange, onSearchChange }) {
       <div className={classes.filterby}>
         <div className={classes["filteration-dropdowns"]}>
           <div className={classes["filteration-group"]}>
-            <FilterByStatus onFilterChange={onFilterChange} />
-            <FilterByAction onFilterChange={onFilterChange} />
+            <FilterByStatus />
+            <FilterByAction />
           </div>
           <div className={classes["filteration-group"]}>
             <FilterByCategory />
-            <FilterByJobType onFilterChange={onFilterChange} />
+            <FilterByJobType />
           </div>
           <div className={classes["filteration-group"]}>
             <FilterByTags />
-            <FilterBySkillLevel onFilterChange={onFilterChange} />
+            <FilterBySkillLevel />
           </div>
         </div>
         <div className={classes.search}>
           <DatePicker />
-          <SearchInput onSearchChange={onSearchChange} />
+          <SearchInput />
         </div>
       </div>
     </div>

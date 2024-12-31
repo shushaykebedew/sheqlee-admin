@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import classes from "./jobpoststable.module.css";
 import statusRed from "../../../images/switch-red.png";
 import statusGreen from "../../../images/switch-green.png";
 import { EditIcon, DeleteIcon, LinkIcon } from "../../../SvgIcons";
+import { JobsContext } from "../JobPosts";
 
-function JobPostsTable({ dummyJobPosts }) {
+function JobPostsTable() {
   const [rowsPerPage, setRowsPerPage] = useState(7);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const { dummyJobPosts } = useContext(JobsContext);
 
   const totalPosts = dummyJobPosts.length;
   const totalPages = Math.ceil(totalPosts / rowsPerPage);

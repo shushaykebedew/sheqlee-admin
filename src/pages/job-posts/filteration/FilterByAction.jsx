@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Select from "react-select";
 import { PolygonDown } from "../../../SvgIcons";
 import classes from "./dropdown-backdrop.module.css";
+import { JobsContext } from "../JobPosts";
 
-function FilterByAction({ onFilterChange }) {
+function FilterByAction() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { onFilterChange } = useContext(JobsContext);
 
   const options = [
     { value: "", label: "Action" },
@@ -102,16 +104,8 @@ function FilterByAction({ onFilterChange }) {
     </span>
   );
 
-  const handleMenuOpen = () => {
-    setIsDropdownOpen(true);
-  };
-
-  const handleMenuClose = () => {
-    setIsDropdownOpen(false);
-  };
-
   const handleFilterChange = (selectedOption) => {
-    onFilterChange(selectedOption.value);
+    onFilterChange(`action:${selectedOption.value}`);
   };
   return (
     <div>
@@ -119,7 +113,7 @@ function FilterByAction({ onFilterChange }) {
       {isDropdownOpen && (
         <div
           className={classes["dropdown-backdrop"]}
-          onClick={handleMenuClose}
+          onClick={() => setIsDropdownOpen(false)}
         />
       )}
 
@@ -132,8 +126,8 @@ function FilterByAction({ onFilterChange }) {
           isSearchable={false}
           isClearable={false}
           components={{ DropdownIndicator }}
-          onMenuOpen={handleMenuOpen}
-          onMenuClose={handleMenuClose}
+          onMenuOpen={() => setIsDropdownOpen(true)}
+          onMenuClose={() => setIsDropdownOpen(false)}
           onChange={handleFilterChange}
         />
       </div>

@@ -1,10 +1,13 @@
 import Select from "react-select";
 import { PolygonDown } from "../../../SvgIcons";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import classes from "./dropdown-backdrop.module.css";
+import { JobsContext } from "../JobPosts";
 
-function FilterBySkillLevel({ onFilterChange }) {
+function FilterBySkillLevel() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { onFilterChange } = useContext(JobsContext);
+
   const options = [
     { value: "", label: "Skill Level" },
     { value: "all-skills", label: "All Skills" },
@@ -108,8 +111,7 @@ function FilterBySkillLevel({ onFilterChange }) {
   );
 
   const handleFilterChange = (selectedOption) => {
-    console.log(selectedOption.value);
-    onFilterChange(selectedOption.value);
+    onFilterChange(`skills:${selectedOption.value}`);
   };
 
   return (

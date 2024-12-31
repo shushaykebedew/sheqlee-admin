@@ -1,7 +1,7 @@
 .jobs {
   position: relative;
   overflow: auto;
-  bottom: 3rem;
+  bottom: 2rem;
 }
 
 .jobs table {
@@ -12,7 +12,7 @@
 }
 
 .jobs-table td {
-  padding: 1rem;
+  padding: 0.9rem 1rem;
 }
 
 .jobs-table tr:nth-child(odd) {

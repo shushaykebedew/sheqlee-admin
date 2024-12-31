@@ -1,10 +1,12 @@
 import Select from "react-select";
 import { PolygonDown } from "../../../SvgIcons";
 import classes from "./dropdown-backdrop.module.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { JobsContext } from "../JobPosts";
 
-function FilterByStatus({ onFilterChange }) {
+function FilterByStatus() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const { onFilterChange } = useContext(JobsContext);
 
   const options = [
     { value: "", label: "Status" },
@@ -103,8 +105,7 @@ function FilterByStatus({ onFilterChange }) {
   );
 
   const handleFilterChange = (selectedOption) => {
-    console.log(selectedOption.value);
-    onFilterChange(selectedOption.value);
+    onFilterChange(`status:${selectedOption.value}`);
   };
 
   return (
