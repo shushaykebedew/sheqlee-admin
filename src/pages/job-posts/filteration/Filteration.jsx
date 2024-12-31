@@ -34,12 +34,18 @@ function DatePicker() {
 
 function SearchInput() {
   const { onSearchChange } = useContext(JobsContext);
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    onSearchChange(value);
+  };
+
   return (
     <div className={classes["search-input"]}>
       <input
         type="text"
         placeholder="Search by title or company name..."
-        onChange={(e) => onSearchChange(e.target.value)}
+        onChange={handleChange}
       />
       <span className={classes["search-icon"]}>
         <SearchIcon />

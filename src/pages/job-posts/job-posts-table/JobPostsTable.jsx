@@ -10,7 +10,7 @@ function JobPostsTable() {
   const [rowsPerPage, setRowsPerPage] = useState(7);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { dummyJobPosts } = useContext(JobsContext);
+  const { dummyJobPosts, onDelete } = useContext(JobsContext);
 
   const totalPosts = dummyJobPosts.length;
   const totalPages = Math.ceil(totalPosts / rowsPerPage);
@@ -70,7 +70,7 @@ function JobPostsTable() {
                   <button>
                     <EditIcon />
                   </button>
-                  <button>
+                  <button onClick={() => onDelete(post.id)}>
                     <DeleteIcon />
                   </button>
                 </div>

@@ -30,11 +30,7 @@ const jobPostsReducer = (state, action) => {
     case "SET_SEARCH": {
       const searchQuery = action.payload;
 
-      if (!searchQuery.trim()) {
-        return { ...state, searchQuery };
-      }
-
-      const searchedJobs = state.filteredJobs.filter((jobPost) => {
+      const filteredJobs = dummyJobPosts.filter((jobPost) => {
         const jobTitle = jobPost.title?.toLowerCase() || "";
         const companyName = jobPost.company?.toLowerCase() || "";
         const query = searchQuery.toLowerCase();
@@ -42,12 +38,8 @@ const jobPostsReducer = (state, action) => {
         return jobTitle.includes(query) || companyName.includes(query);
       });
 
-      return { ...state, searchQuery, filteredJobs: searchedJobs };
+      return { ...state, searchQuery, filteredJobs }; // Update filteredJobs directly based on the search query
     }
-
-    default:
-      console.error(`Unhandled action type: ${action.type}`);
-      return state;
 
     case "SET_DATE_RANGE": {
       const { startDate, endDate } = action.payload;
@@ -65,6 +57,17 @@ const jobPostsReducer = (state, action) => {
         filteredJobs: filteredByDate,
       };
     }
+
+    case "DELETE_POST": {
+      const updatedJobs = state.filteredJobs.filter(
+        (jobPost) => jobPost.id !== action.payload
+      );
+      return { ...state, filteredJobs: updatedJobs };
+    }
+
+    default:
+      console.error(`Unknown action type: ${action.type}`);
+      return state;
   }
 };
 
@@ -91,6 +94,16 @@ function JobPosts() {
     dispatch({ type: "SET_DATE_RANGE", payload: { startDate, endDate } });
   };
 
+  const handleJobPostDelete = (id) => {
+    if (
+      window.confirm(
+        `Are you sure you want to delete this job post with id ${id} ?`
+      )
+    ) {
+      dispatch({ type: "DELETE_POST", payload: id });
+    }
+  };
+
   return (
     <JobsContext.Provider
       value={{
@@ -99,6 +112,7 @@ function JobPosts() {
         dummyJobPosts: state.filteredJobs,
         onApply: (startDate, endDate) =>
           handleDateRangeChange(startDate, endDate),
+        onDelete: handleJobPostDelete,
       }}
     >
       <div className={classes["job-posts"]}>
