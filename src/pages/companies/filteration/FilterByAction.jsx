@@ -1,29 +1,30 @@
-import React, { useState, useContext } from "react";
+import React, { useContext, useState } from "react";
 import { PolygonDown, PolygonUp } from "../../../SvgIcons";
-import classes from "./FilterByStatus.module.css";
-import { JobsContext } from "../JobPosts";
+import classes from "./FilterByAction.module.css";
+import { CompaniesContext } from "../Companies";
 
-function FilterByStatus() {
+function FilterByAction() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("Status");
-  const { onFilterChange } = useContext(JobsContext);
+  const [selectedOption, setSelectedOption] = useState("Action");
+
+  const { onFilterChange } = useContext(CompaniesContext);
 
   const options = [
-    { value: "", label: "Status" },
-    { value: "all-status", label: "All Statuses" },
+    { value: "", label: "Action" },
+    { value: "all-actions", label: "All Actions" },
     { value: "active", label: "Active" },
     { value: "inactive", label: "Inactive" },
+    { value: "deleted", label: "Deleted" },
   ];
 
   const handleOptionClick = (option) => {
     setSelectedOption(option.label);
-    onFilterChange(`status:${option.value}`);
+    onFilterChange(`action:${option.value}`);
     setIsDropdownOpen(false);
   };
 
   return (
     <div className={classes.container}>
-      {/* Backdrop */}
       {isDropdownOpen && (
         <div
           className={classes.backdrop}
@@ -31,7 +32,6 @@ function FilterByStatus() {
         />
       )}
 
-      {/* Dropdown */}
       <div className={classes.dropdown}>
         <div
           className={`${classes.control} ${
@@ -66,7 +66,7 @@ function FilterByStatus() {
                 {index === 0 && (
                   <PolygonUp
                     className={classes.iconUp}
-                    style={{ width: "1.3rem", height: "1.3rem" }}
+                    style={{ width: "1.5rem", height: "1.5rem" }}
                   />
                 )}
               </li>
@@ -78,4 +78,4 @@ function FilterByStatus() {
   );
 }
 
-export default FilterByStatus;
+export default FilterByAction;

@@ -38,14 +38,14 @@ const jobPostsReducer = (state, action) => {
         return jobTitle.includes(query) || companyName.includes(query);
       });
 
-      return { ...state, searchQuery, filteredJobs }; // Update filteredJobs directly based on the search query
+      return { ...state, searchQuery, filteredJobs };
     }
 
     case "SET_DATE_RANGE": {
       const { startDate, endDate } = action.payload;
 
       const filteredByDate = dummyJobPosts.filter((jobPost) => {
-        const jobDate = new Date(jobPost.postDate); // Assuming `postedDate` exists in job posts
+        const jobDate = new Date(jobPost.postDate);
         if (startDate && jobDate < new Date(startDate)) return false;
         if (endDate && jobDate > new Date(endDate)) return false;
         return true;

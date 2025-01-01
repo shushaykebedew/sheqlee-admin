@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { PolygonDown } from "../../../SvgIcons";
+import { PolygonDown, PolygonUp } from "../../../SvgIcons";
 import classes from "./FilterByJobType.module.css";
 import { JobsContext } from "../JobPosts";
 
@@ -43,7 +43,7 @@ function FilterByJobType() {
           onClick={() => setIsDropdownOpen(!isDropdownOpen)}
         >
           <span className={classes.label}>{selectedOption}</span>
-          <PolygonDown className={classes.icon} />
+          <PolygonDown className={classes.iconDown} />
         </div>
 
         {isDropdownOpen && (
@@ -54,11 +54,24 @@ function FilterByJobType() {
                 className={classes.option}
                 style={{
                   borderBottom:
-                    index === options.length - 1 ? "none" : "1px solid #B4B4B4",
+                    index === options.length - 1
+                      ? "none"
+                      : index === 0
+                      ? "1px solid #B4B4B4"
+                      : "1px solid #b4b4b49d",
+
+                  marginLeft: index !== 0 ? "1rem" : "0",
+                  paddingLeft: index === 0 ? "1rem" : "0",
                 }}
                 onClick={() => handleOptionClick(option)}
               >
-                {option.label}
+                <span> {option.label}</span>
+                {index === 0 && (
+                  <PolygonUp
+                    className={classes.iconUp}
+                    style={{ width: "1.3rem", height: "1.3rem" }}
+                  />
+                )}
               </li>
             ))}
           </ul>

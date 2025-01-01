@@ -1,55 +1,24 @@
 .filteration {
   display: flex;
   font-family: inherit;
-  padding: 1.5rem 0 1.8rem 0;
-}
-.titles {
-  width: 45%;
+  padding-top: 3.5rem;
 }
 .filterby {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 3rem;
 }
 .filteration-dropdowns {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   gap: 2rem;
-}
-.filteration-group {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
+  padding-left: 2rem;
 }
 
 /* dropdown*/
 .dropdown-container {
   position: relative;
   width: 100%;
-}
-
-.dropdown-container select {
-  width: 100%;
-  padding: 1.2rem 3.5rem 1.2rem 1.5rem;
-  font-size: 1.6rem;
-  border-radius: 5px;
-  background-color: var(--input-bg-color);
-  color: var(--placeholder-color);
-  cursor: pointer;
-  border: none;
-  font-family: inherit;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  /* remove the default arrow */
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-.dropdown-container select:focus {
-  border: none;
-  outline: none;
 }
 
 .dropdown-container svg {
@@ -61,28 +30,13 @@
   height: 1.2rem;
 }
 
-.filter-by-job-type select,
-.filter-by-category select {
-  width: 20rem;
-}
-
-.filter-by-skill-level select,
-.filter-by-tags select {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0;
-  width: 20rem;
-}
-.filter-by-action select,
-.filter-by-status select {
-  width: 15rem;
-}
 /*      *****************  Searching   ******************     */
 .search {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1.5rem;
-  margin-left: 17rem;
+  margin-left: 2rem;
 }
 
 .date-picker {
@@ -117,8 +71,8 @@
   padding: 1.2rem;
   padding-left: 4rem;
   border: none;
-  border-top-left-radius: 7px;
-  border-bottom-left-radius: 7px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
   font-size: 1.6rem;
   color: var(--placeholder-color);
   background-color: var(--input-bg-color);

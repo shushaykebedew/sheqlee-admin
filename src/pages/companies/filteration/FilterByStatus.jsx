@@ -1,23 +1,25 @@
 import React, { useState, useContext } from "react";
 import { PolygonDown, PolygonUp } from "../../../SvgIcons";
 import classes from "./FilterByStatus.module.css";
-import { JobsContext } from "../JobPosts";
+
+import { CompaniesContext } from "../Companies";
 
 function FilterByStatus() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("Status");
-  const { onFilterChange } = useContext(JobsContext);
+  const { onFilterChange } = useContext(CompaniesContext);
 
   const options = [
     { value: "", label: "Status" },
     { value: "all-status", label: "All Statuses" },
     { value: "active", label: "Active" },
-    { value: "inactive", label: "Inactive" },
+    { value: "deleted", label: "Deleted" },
   ];
 
   const handleOptionClick = (option) => {
     setSelectedOption(option.label);
     onFilterChange(`status:${option.value}`);
+    console.log(`status:${option.value}`);
     setIsDropdownOpen(false);
   };
 
@@ -66,7 +68,7 @@ function FilterByStatus() {
                 {index === 0 && (
                   <PolygonUp
                     className={classes.iconUp}
-                    style={{ width: "1.3rem", height: "1.3rem" }}
+                    style={{ width: "1.5rem", height: "1.5rem" }}
                   />
                 )}
               </li>

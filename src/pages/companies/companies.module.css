@@ -1,0 +1,11 @@
+.companies {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  height: 20rem;
+  display: flex;
+}
+.titles {
+  width: 55rem;
+}
