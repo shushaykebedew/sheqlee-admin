@@ -38,7 +38,7 @@ function SearchInput() {
     <div className={classes["search-input"]}>
       <input
         type="text"
-        placeholder="Search by title or company name..."
+        placeholder="Search by email or company name..."
         onChange={handleChange}
       />
       <span className={classes["search-icon"]}>

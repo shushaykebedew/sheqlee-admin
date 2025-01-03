@@ -116,19 +116,25 @@ function Companies() {
         onDelete: handleCompanyDeletion,
       }}
     >
-      <div className={classes["companies"]}>
-        <div className={classes["header"]}>
-          <div className={classes.titles}>
-            <Headers />
+      {dummyCompanies.length === 0 ? (
+        <p className={classes["no-data-message"]}>
+          There are no freelancers right now!
+        </p>
+      ) : (
+        <div className={classes["companies"]}>
+          <div className={classes["header"]}>
+            <div className={classes.titles}>
+              <Headers />
+            </div>
+            <div className={classes.filters}>
+              <Filteration />
+            </div>
           </div>
-          <div className={classes.filters}>
-            <Filteration />
+          <div className="companies-table">
+            <CompaniesTable />
           </div>
         </div>
-        <div className="companies-table">
-          <CompaniesTable />
-        </div>
-      </div>
+      )}
     </CompaniesContext.Provider>
   );
 }
