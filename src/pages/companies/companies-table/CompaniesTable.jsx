@@ -16,10 +16,10 @@ function CompaniesTable() {
 
   const { dummyCompanies, onDelete } = useContext(CompaniesContext);
 
-  const totalPosts = dummyCompanies.length;
-  const totalPages = Math.ceil(totalPosts / rowsPerPage);
+  const totalCompanies = dummyCompanies.length;
+  const totalPages = Math.ceil(totalCompanies / rowsPerPage);
 
-  const currentPosts = dummyCompanies.slice(
+  const currentCompanies = dummyCompanies.slice(
     (currentPage - 1) * rowsPerPage,
     currentPage * rowsPerPage
   );
@@ -64,7 +64,7 @@ function CompaniesTable() {
           </tr>
         </thead>
         <tbody>
-          {currentPosts.map((company) => (
+          {currentCompanies.map((company) => (
             <tr key={company.coID}>
               <td>{company.coID}</td>
               <td>{company.companyName}</td>
@@ -106,45 +106,47 @@ function CompaniesTable() {
           ))}
         </tbody>
       </table>
-      <div className={classes.pagination}>
-        <div className={classes.text}>
-          Rows per page:
-          <div className={classes["rows-per-page"]}>
-            <input
-              type="number"
-              min={1}
-              max={10}
-              value={rowsPerPage}
-              onChange={(e) => setRowsPerPage(e.target.value)}
-            />
+      {totalPages > 1 && (
+        <div className={classes.pagination}>
+          <div className={classes.text}>
+            Rows per page:
+            <div className={classes["rows-per-page"]}>
+              <input
+                type="number"
+                min={1}
+                max={10}
+                value={rowsPerPage}
+                onChange={(e) => setRowsPerPage(e.target.value)}
+              />
+            </div>
           </div>
+          <div>{`${(currentPage - 1) * rowsPerPage + 1}-${Math.min(
+            currentPage * rowsPerPage,
+            totalCompanies
+          )} of ${totalCompanies}`}</div>
+          <ul className={classes.pages}>
+            <li
+              className={`${classes.backward} ${
+                currentPage === 1 ? classes.disabled : ""
+              }`}
+            >
+              <button onClick={() => handlePageChange("prev")}>
+                <IoChevronBack />
+              </button>
+            </li>
+            <li className={classes["page-number"]}>{currentPage}</li>
+            <li
+              className={`${classes.backward} ${
+                currentPage === totalPages ? classes.disabled : ""
+              }`}
+            >
+              <button onClick={() => handlePageChange("next")}>
+                <IoChevronForward />
+              </button>
+            </li>
+          </ul>
         </div>
-        <div>{`${(currentPage - 1) * rowsPerPage + 1}-${Math.min(
-          currentPage * rowsPerPage,
-          totalPosts
-        )} of ${totalPosts}`}</div>
-        <ul className={classes.pages}>
-          <li
-            className={`${classes.backward} ${
-              currentPage === 1 ? classes.disabled : ""
-            }`}
-          >
-            <button onClick={() => handlePageChange("prev")}>
-              <IoChevronBack />
-            </button>
-          </li>
-          <li className={classes["page-number"]}>{currentPage}</li>
-          <li
-            className={`${classes.backward} ${
-              currentPage === totalPages ? classes.disabled : ""
-            }`}
-          >
-            <button onClick={() => handlePageChange("next")}>
-              <IoChevronForward />
-            </button>
-          </li>
-        </ul>
-      </div>
+      )}
       {isModalOpen && (
         <DeletionReasonModal
           isOpen={isModalOpen}
