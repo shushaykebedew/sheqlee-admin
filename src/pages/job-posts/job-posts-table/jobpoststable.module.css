@@ -121,21 +121,31 @@ ul {
   align-items: center;
   justify-content: center;
 }
-.pages a {
+.pages button {
+  all: unset;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
 }
-.backward a,
-.forward a {
+.backward button,
+.forward button {
   font-weight: bold;
   cursor: pointer;
   color: #000000;
 }
 
-.disabled a {
+.disabled button {
   color: gray;
   pointer-events: none;
 }
 .page-number {
   text-align: center;
+}
+.link-icon {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }

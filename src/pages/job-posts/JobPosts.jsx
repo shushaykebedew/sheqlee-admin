@@ -115,14 +115,21 @@ function JobPosts() {
         onDelete: handleJobPostDelete,
       }}
     >
-      <div className={classes["job-posts"]}>
-        <div className={classes["filters"]}>
-          <Filteration />
+      {dummyJobPosts.length === 0 ? (
+        <p className={classes["no-data-message"]}>
+          {" "}
+          There are no job posts right now!
+        </p>
+      ) : (
+        <div className={classes["job-posts"]}>
+          <div className={classes["filters"]}>
+            <Filteration />
+          </div>
+          <div className="job-posts-table">
+            <JobPostsTable />
+          </div>
         </div>
-        <div className="job-posts-table">
-          <JobPostsTable />
-        </div>
-      </div>
+      )}
     </JobsContext.Provider>
   );
 }
